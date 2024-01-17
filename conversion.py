@@ -14,17 +14,28 @@ def convert(from_type, to_type, value):
         
         
         if to_type == 'Binary':
-            if from_type != 'Hexadecimal':
-                value = int(value, 0)
-            else: value = int(value, 16)
-            return bin(value)
+            if from_type == 'Octal':
+                value = int(value, 8)
+            if from_type == 'Decimal':
+                value = int(value, 10)
+            if from_type == 'Hexadecimal':
+                value = int(value, 16)
+            return bin(value)[2:]
         elif to_type == 'Octal':
-            if from_type != 'Hexadecimal':
-                value = int(value)
-            else: value = int(value, 16)
+            if from_type == 'Binary':
+                value = int(value, 2)
+            if from_type == 'Decimal':
+                value = int(value, 10)
+            if from_type == 'Hexadecimal':
+                value = int(value, 16)
             return oct(value)[2:]
         elif to_type == 'Hexadecimal':
-            value = int(value, 0)
+            if from_type == 'Binary':
+                value = int(value, 2)
+            if from_type == 'Decimal':
+                value = int(value, 10)
+            if from_type == 'Octal':
+                value = int(value, 8)
             return hex(value)[2:]
     except ValueError as e:
         return f"Invalid input. {str(e)}"
