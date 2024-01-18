@@ -41,7 +41,7 @@ def from_hexadecimal(to_type, value):
     try:
         value = int(value, 16)
         if to_type == 'Binary':
-            return oct(value)[2:]
+            return bin(value)[2:]
         elif to_type == 'Octal':
             return oct(value)[2:]
         elif to_type == 'Decimal':
